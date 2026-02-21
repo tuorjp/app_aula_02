@@ -31,7 +31,9 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- **I. Composition Over Monoliths**: Does the design favor small, composable widgets rather than monolithic ones?
+- **II. Predictable State Management**: Is the state management approach clear and predictable for the proposed changes?
+- **III. Strict Type Safety & Analysis**: Does the technical approach maintain strong typing and pass all linting checks?
 
 ## Project Structure
 

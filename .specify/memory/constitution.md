@@ -1,50 +1,50 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+SYNC IMPACT REPORT
+Version: Initial Draft -> 1.0.0
+
+Modified Principles:
+- [PRINCIPLE_1_NAME] -> I. Composition Over Monoliths
+- [PRINCIPLE_2_NAME] -> II. Predictable State Management
+- [PRINCIPLE_3_NAME] -> III. Strict Type Safety & Analysis
+- [PRINCIPLE_4_NAME] -> Removed
+- [PRINCIPLE_5_NAME] -> Removed
+
+Added Sections:
+- Architecture Constraints
+- Development Workflow
+
+Removed Sections: None
+
+Templates requiring updates:
+- .specify/templates/plan-template.md (✅ updated)
+- .specify/templates/spec-template.md (✅ checked, no update needed)
+- .specify/templates/tasks-template.md (✅ checked, no update needed)
+-->
+
+# app_aula_02 Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Composition Over Monoliths
+Build UIs by composing small, focused widgets rather than large monolithic widgets. Use `const` constructors wherever possible to improve rendering performance.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Predictable State Management
+Favor simple local state using `StatefulWidget` for isolated UI state. For global or cross-widget state, ensure a clear, unidirectional data flow that separates business logic from UI.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Strict Type Safety & Analysis
+Ensure strongly-typed code in all Dart files. Maintain strict linting rules and require zero warnings or errors from `flutter analyze` for any code merged into the main branch.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+## Architecture Constraints
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+Ensure clear separation of concerns. Do not mix UI code directly with business logic or network calls. Follow a cohesive directory structure (e.g., separating models, views, and viewmodels/controllers). Use dependency injection or service locators to provide dependencies rather than hardcoding instantiations.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Development Workflow
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Before creating a pull request, all developers MUST manually run `flutter analyze` and `flutter test`. 
+Code reviews must ensure that UI compositions remain small and maintainable. Breaking changes should be discussed prior to implementation.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+The Constitution supersedes all other practices. All PRs and code reviews must verify compliance with the Core Principles. Amendments to this document require documentation of the rationale and team agreement.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-02-20 | **Last Amended**: 2026-02-20
