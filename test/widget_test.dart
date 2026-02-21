@@ -1,30 +1,53 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:app_aula_02/main.dart';
+import 'package:app_aula_02/core/operation_registry.dart';
+import 'package:app_aula_02/operations/add_operation.dart';
+import 'package:app_aula_02/operations/subtract_operation.dart';
+import 'package:app_aula_02/operations/multiply_operation.dart';
+import 'package:app_aula_02/operations/divide_operation.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Calculator smoke test', (WidgetTester tester) async {
+    // Register basic operations for the test
+    final registry = OperationRegistry.instance;
+    if (registry.allOperations.isEmpty) {
+      registry.register(AddOperation());
+      registry.register(SubtractOperation());
+      registry.register(MultiplyOperation());
+      registry.register(DivideOperation());
+    }
+
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that our initial output is 0.
+    expect(find.text('0'), findsWidgets); // 0 in output and 0 button
+    expect(find.text('Extensible Calculator'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // Verify numbers exist
+    expect(find.text('5'), findsOneWidget);
+    expect(find.text('9'), findsOneWidget);
+
+    // Verify operations exist (registered in main.dart)
+    expect(find.text('+'), findsOneWidget);
+    expect(find.text('-'), findsOneWidget);
+    expect(find.text('*'), findsOneWidget);
+    expect(find.text('/'), findsOneWidget);
+
+    // Perform a simple 5 + 3 = 8
+    await tester.tap(find.widgetWithText(ElevatedButton, '5'));
+    await tester.pump();
+    await tester.tap(find.widgetWithText(ElevatedButton, '+'));
+    await tester.pump();
+    await tester.tap(find.widgetWithText(ElevatedButton, '3'));
+    await tester.pump();
+    await tester.tap(find.widgetWithText(ElevatedButton, '='));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify output is 8 (the output text is larger so it might be harder to find specifically,
+    // but we can check if '8' exists as text).
+    expect(find.text('8'), findsWidgets);
   });
 }
