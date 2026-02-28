@@ -1,0 +1,29 @@
+﻿# app_aula_02 Development Guidelines
+
+Auto-generated from all feature plans. Last updated: 2026-02-27
+
+## Active Technologies
+
+- Dart 3 (Flutter) + Flutter SDK, built-in `dart:math` (002-bhaskara-operation)
+
+## Project Structure
+
+```text
+src/
+tests/
+```
+
+## Commands
+
+# Add commands for Dart 3 (Flutter)
+
+## Code Style
+
+Dart 3 (Flutter): Follow standard conventions
+
+## Recent Changes
+
+- 002-bhaskara-operation: Added Dart 3 (Flutter) + Flutter SDK, built-in `dart:math`
+
+<!-- MANUAL ADDITIONS START -->
+<!-- MANUAL ADDITIONS END -->
