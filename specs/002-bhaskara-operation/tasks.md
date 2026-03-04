@@ -41,10 +41,10 @@
 
 ### Implementation for User Story 1
 
-- [ ] T005 [P] [US1] Implement `BhaskaraInputModal` in `lib/ui/widgets/bhaskara_input_modal.dart` to collect text inputs for `a`, `b`, and `c` and return them as a tuple or custom class.
-- [ ] T006 [P] [US1] Implement `BhaskaraOperation` in `lib/operations/bhaskara_operation.dart` to accept coefficients, compute the roots, and output `displayOverride = "[x1, x2]"`.
-- [ ] T007 [US1] Update `CalculatorScreen` logic in `lib/ui/calculator_screen.dart` to intercept the operation press if it's Bhaskara, show the modal, and then apply `BhaskaraOperation` with the collected inputs.
-- [ ] T008 [US1] Register the button generically in `lib/main.dart` under `OperationRegistry` (or handle it directly if treating it as a special meta-operation).
+- [x] T005 [P] [US1] Implement `BhaskaraInputModal` in `lib/ui/widgets/bhaskara_input_modal.dart` to collect text inputs for `a`, `b`, and `c` and return them as a tuple or custom class.
+- [x] T006 [P] [US1] Implement `BhaskaraOperation` in `lib/operations/bhaskara_operation.dart` to accept coefficients, compute the roots, and output `displayOverride = "[x1, x2]"`.
+- [x] T007 [US1] Update `CalculatorScreen` logic in `lib/ui/calculator_screen.dart` to intercept the operation press if it's Bhaskara, show the modal, and then apply `BhaskaraOperation` with the collected inputs.
+- [x] T008 [US1] Register the button generically in `lib/main.dart` under `OperationRegistry` (or handle it directly if treating it as a special meta-operation).
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -58,8 +58,8 @@
 
 ### Implementation for User Story 2
 
-- [ ] T009 [US2] Update `BhaskaraOperation` in `lib/operations/bhaskara_operation.dart` to check for $\Delta < 0$ and set `displayOverride = "Sem raízes reais"`.
-- [ ] T010 [US2] Update `BhaskaraOperation` in `lib/operations/bhaskara_operation.dart` to handle $a=0$ gracefully, perhaps setting `displayOverride = "Erro: a=0"`.
+- [x] T009 [US2] Update `BhaskaraOperation` in `lib/operations/bhaskara_operation.dart` to check for $\Delta < 0$ and set `displayOverride = "Sem raízes reais"`.
+- [x] T010 [US2] Update `BhaskaraOperation` in `lib/operations/bhaskara_operation.dart` to handle $a=0$ gracefully, perhaps setting `displayOverride = "Erro: a=0"`.
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -69,8 +69,8 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T011 Run `flutter analyze` to ensure zero warnings (Constitution Principle III).
-- [ ] T012 Manual UI checking to verify dynamic layout sizing with long strings like "Sem raízes reais" on smaller screens.
+- [x] T011 Run `flutter analyze` to ensure zero warnings (Constitution Principle III).
+- [x] T012 Manual UI checking to verify dynamic layout sizing with long strings like "Sem raízes reais" on smaller screens.
 
 ---
 

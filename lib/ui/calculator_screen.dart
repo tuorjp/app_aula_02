@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../core/calculator_state.dart';
 import '../core/operation.dart';
 import '../core/operation_registry.dart';
+import '../operations/bhaskara_operation.dart';
 import 'widgets/operation_button.dart';
+import 'widgets/bhaskara_input_modal.dart';
 
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({super.key});
@@ -32,7 +34,26 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     });
   }
 
-  void _onOperationPressed(Operation operation) {
+  void _onOperationPressed(Operation operation) async {
+    if (operation.label == 'Bhaskara') {
+      final result = await showDialog<Map<String, double>>(
+        context: context,
+        builder: (context) => const BhaskaraInputModal(),
+      );
+
+      if (result != null && mounted) {
+        setState(() {
+          final bhaskara = BhaskaraOperation(
+            a: result['a']!,
+            b: result['b']!,
+            c: result['c']!,
+          );
+          _state = bhaskara.execute(_state);
+        });
+      }
+      return;
+    }
+
     setState(() {
       // First evaluate any pending operation if applicable, otherwise just execute
       if (_state.lastOperator != null && !_state.isNewInput) {
@@ -90,12 +111,15 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   @override
   Widget build(BuildContext context) {
     // Format output to drop '.0' if integer
-    String displayText = _state.currentInput.toString();
-    if (displayText.endsWith('.0')) {
-      displayText = displayText.substring(0, displayText.length - 2);
-    }
-    if (displayText == 'Infinity') {
-      displayText = 'Error';
+    String displayText =
+        _state.displayOverride ?? _state.currentInput.toString();
+    if (_state.displayOverride == null) {
+      if (displayText.endsWith('.0')) {
+        displayText = displayText.substring(0, displayText.length - 2);
+      }
+      if (displayText == 'Infinity') {
+        displayText = 'Error';
+      }
     }
 
     return Scaffold(
@@ -123,8 +147,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                       ),
                     Text(
                       displayText,
-                      style: const TextStyle(
-                        fontSize: 72,
+                      style: TextStyle(
+                        fontSize: displayText.length > 10
+                            ? 36
+                            : 72, // Adjust size for long strings
                         fontWeight: FontWeight.w300,
                         color: Colors.white,
                       ),
@@ -143,7 +169,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.grey[900]!.withOpacity(0.5),
+                  color: Colors.grey[900]!.withAlpha(128),
                   borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(32),
                   ),
@@ -219,7 +245,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                           child: Wrap(
                             alignment: WrapAlignment.start,
                             children: _getExtraOperations().map((op) {
-                              return Container(
+                              return SizedBox(
                                 width:
                                     (MediaQuery.of(context).size.width - 24) /
                                     4,

@@ -5,6 +5,7 @@ import 'operations/add_operation.dart';
 import 'operations/subtract_operation.dart';
 import 'operations/multiply_operation.dart';
 import 'operations/divide_operation.dart';
+import 'operations/bhaskara_operation.dart';
 
 void main() {
   // Register basic operations
@@ -12,6 +13,11 @@ void main() {
   OperationRegistry.instance.register(SubtractOperation());
   OperationRegistry.instance.register(MultiplyOperation());
   OperationRegistry.instance.register(DivideOperation());
+
+  // Register extra operations
+  OperationRegistry.instance.register(
+    BhaskaraOperation(a: 1, b: 1, c: 1),
+  ); // Template instance for UI
 
   runApp(const MyApp());
 }
